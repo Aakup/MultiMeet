@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-    
+
+    # authentication
     before_save {self.email = email.downcase}
     
     validates :first_name, presence: true
@@ -15,4 +16,7 @@ class User < ActiveRecord::Base
     has_secure_password
     
     validates :password_confirmation, presence: true;
+
+    # projects
+    has_many :project
 end

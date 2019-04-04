@@ -11,42 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402052719) do
+ActiveRecord::Schema.define(version: 20190402023510) do
 
-  create_table "participant_ranked_times", id: false, force: :cascade do |t|
-    t.string  "participant_email"
-    t.float   "ranking"
-    t.integer "project_time_id"
+  create_table "participant_ranked_times", force: :cascade do |t|
+    t.float  "ranking"
+    t.string "participant_id", null: false
+    t.string "project_id",     null: false
   end
 
-  create_table "participants", id: false, force: :cascade do |t|
-    t.string  "participant_email"
-    t.integer "project_id"
+  create_table "participants", force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.string  "email",      null: false
   end
 
-  create_table "project_times", id: false, force: :cascade do |t|
-    t.integer  "project_time_id"
-    t.integer  "project_id"
-    t.datetime "start_time"
+  add_index "participants", ["project_id", "email"], name: "index_participants_on_project_id_and_email", unique: true
+
+  create_table "project_times", force: :cascade do |t|
+    t.datetime "start_time", null: false
     t.datetime "end_time"
-    t.date     "date"
+    t.datetime "[]"
   end
 
-  create_table "projects", id: false, force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "user_id"
-    t.string  "project_name"
+  create_table "projects", force: :cascade do |t|
+    t.string "project_name", null: false
+    t.string "username",     null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "password"
     t.string   "password_confirmation"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
