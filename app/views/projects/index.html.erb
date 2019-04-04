@@ -33,16 +33,25 @@
    </ul>
 </nav>
 
-<% if logged_in? %>  
-   <div class="mx-4 my-4"><strong>Welcome to MultiMatch!</strong></div>
-   <div class="project-header mx-4 my-4"><strong>All Projects</strong></div> 
+<% if logged_in? %>
+  <div class="mx-4 my-4">
+    <p>Welcome to MultiMatch!</p></div>
+  <div class="project-header mx-4 my-4">All Projects</div>
+  <% if @projects %>
+    <!--<ul>-->
+    <% @projects.each do |project| %>
+      <li><%= project.project_name %></li>
+    <% end %>
+    <!--</ul>-->
+  <% end %>
+  </div>
 <% else %>
-   <div class="mx-4 my-4">
-      <p>
+  <div class="mx-4 my-4">
+    <p>
       No projects available.
       <br></br>
       Please <strong>login</strong> or <strong>sign up</strong> for a new account!
-   </p>
-   </div>
+    </p>
+  </div>
 <% end %>
 
