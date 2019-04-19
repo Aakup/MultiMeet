@@ -20,55 +20,48 @@ class ParticipantsController < ApplicationController
 
   # GET /participants/1
   # GET /participants/1.json
-  def show
-    redirect_to projects_path
-  end
+  # def show
+  #   redirect_to projects_path
+  # end
 
   # GET /participants/new
-  def new
-    @participant = Participant.new
-  end
-
-  # GET /participants/1/edit
-  def edit
-  end
+  # def new
+  #   @participant = Participant.new
+  # end
 
   # POST /participants
   # POST /participants.json
   def create
     @participant = Participant.new(participant_params)
     @participant.project_id = params[:project_id]
-    if @participant.email.nil? or @participant.email.empty?
-      flash[:error] = "Please Enter an valid email"
-      redirect_to display_project_participants_path(params[:project_id])
-    elsif !Participant.where(
+    if !Participant.where(
         project_id: @participant.project_id, email: @participant.email).blank?
-      flash[:error] = "Project name already exists"
+      flash[:error] = "Participant's email already exists"
       redirect_to display_project_participants_path(params[:project_id])
-    elsif @participant.save!
+    else @participant.save!
       flash[:success] = "Successfully created participant #{@participant.email}"
       redirect_to display_project_participants_path(params[:project_id])
-    else
-      flash[:message] = @user.errors.full_messages
-      redirect_to display_project_participants_path(params[:project_id])
+    # else
+    #   flash[:message] = @user.errors.full_messages
+    #   redirect_to display_project_participants_path(params[:project_id])
     end
   end
 
   # PATCH/PUT /participants/1
   # PATCH/PUT /participants/1.json
-  def update
-    respond_to do |format|
-      if @participant.update(participant_params)
-        @participant.project_id = participant_params[:project_id]
-        @participant.email = participant_params[:email]
-        format.html { redirect_to display_project_participants_path(params[:project_id]), notice: 'Participant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @participant }
-      else
-        format.html { render :edit }
-        format.json { render json: @participant.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @participant.update(participant_params)
+  #       @participant.project_id = participant_params[:project_id]
+  #       @participant.email = participant_params[:email]
+  #       format.html { redirect_to display_project_participants_path(params[:project_id]), notice: 'Participant was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @participant }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @participant.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /participants/1
   # DELETE /participants/1.json

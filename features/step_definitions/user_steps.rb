@@ -37,10 +37,22 @@ When /^I access the matchings page for project of id "(.*)"$/ do |id|
     visit "/projects/" + id + "/matching"
 end
 
+When /^I press the roster bottom for project of id "(.*)"$/ do |id|
+    visit "/projects/" + id + "/participants"
+end
+
+When /^I press the edit bottom for project of id "(.*)"$/ do |id|
+    visit "/projects/" + id + "/edit"
+end
+
+When /^I press the delete bottom for participant of email "(.*)" and project id of "(.*)"$/ do |email, id|
+    Participant.find_by(:project_id => id, :email => email)
+    Participant.delete(:email => email)
+end
+
 When /^I access the times page for project of id "(.*)"$/ do |id|
     visit "/projects/" + id + "/times"
-    
-end 
+end
 
 When("I click the second show") do
     page.all("a.btn btn-info")[1].click

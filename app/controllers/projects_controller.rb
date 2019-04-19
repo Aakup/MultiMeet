@@ -8,16 +8,16 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   # GET /projects/1.json
-  def show
-    # unless current_user
-    #   redirect_to root_path
-    # end
-  end
-
-  # GET /projects/1/edit
-  def edit
-
-  end
+  # def show
+  #   # unless current_user
+  #   #   redirect_to root_path
+  #   # end
+  # end
+  #
+  # # GET /times/1/edit
+  # def edit
+  #
+  # end
 
   def update
     @project = Project.find(params[:id].to_i)
