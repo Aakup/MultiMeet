@@ -66,33 +66,41 @@ $(document).on('click', '.deletebutton', function(){
     parent.remove();
 });
 
+/* Change input1 based on input2 change
+* e.g. start time changes based on duration if end time changes,
+* and vice versa
+* */
+function makeInputDurationListeners(input1_selector, input2_selector, isStart) {
+    $(document).on('input', input1_selector, function () {
+        var newInput2 = getNewInput($(this), isStart);
+        var container = isStart ? $(this).parent().next() : $(this).parent().prev();
+        var input2 = container.children(input2_selector);
+        $(input2).val(newInput2);
+    });
+}
+
 /* Change Endinput to fit timeslot length */
-$(document).on('input', '.startInput', function(){
-    var newEndInput = getNewInput($(this), true);
-    var endInput = $(this).parent().next().children('.endInput');
-    $(endInput).val(newEndInput);
-});
+makeInputDurationListeners('.startInput', '.endInput', true);
 
 /* Change startInput to fit timeslot length */
-$(document).on('input', '.endInput', function(){
-    var newStartInput = getNewInput($(this), false);
-    var startInput = $(this).parent().prev().children('.startInput');
-    $(startInput).val(newStartInput);
-});
+makeInputDurationListeners('.endInput', '.startInput', false);
 
-/* Change endInput value to match new duration if timeslot divs exist */
-$(document).on('input', '#timeslot_hour', function(){
-    var hourInput = $(this).val();
-    var minuteInput = $('#timeslot_minute').find(":selected").text();
-    changeEndInput($(this), hourInput, minuteInput);
-});
+/*
+ * boolean isHour determines which one to listen for: hour or minute
+ * Change endInput value to match new duration if timeslot divs exist
+ */
+function makeTimeslotListeners(isHour) {
+    var listener_selector = isHour ? '#timeslot_hour' : '#timeslot_minute';
+    $(document).on('input', listener_selector, function(){
+        var hourInput = isHour ? $(this).val() : $('#timeslot_hour').find(":selected").text();
+        var minuteInput = isHour ? $('#timeslot_minute').find(":selected").text() : $(this).val();
+        changeEndInput($(this), hourInput, minuteInput);
+    });
+}
 
-/* Change endInput value to match new duration if timeslot divs exist */
-$(document).on('input', '#timeslot_minute', function(){
-    var minuteInput = $(this).val();
-    var hourInput = $('#timeslot_hour').find(":selected").text();
-    changeEndInput($(this), hourInput, minuteInput);
-});
+makeTimeslotListeners(true);
+
+makeTimeslotListeners(false);
 
 function getNewInput(value, boolean){
     var newValue = value.val();
@@ -123,44 +131,39 @@ function changeTime(addBoolean, startInput, hourInput, minuteInput){
     }
     var strHour = outHour.toString();
     var strMinute = outMinute.toString();
-    if (strHour.length == 1){
+    if (strHour.length === 1){
         strHour = "0" + strHour;
     }
-    if (strMinute.length == 1){
+    if (strMinute.length === 1){
         strMinute = "0" + strMinute;
     }
     
     return strHour + ":" + strMinute;
 }
 
+// add is boolean representing add (true) or subtract (false)
+function modifyTimeLogic(hour, minute, startHour, startMinute, add){
+    var sign_unit = add ? 1 : -1;
+    minute = startMinute + sign_unit * minute;
+    var overflow_condition = add ? minute >= 60 : minute < 0;
+    if (overflow_condition) {
+        hour = startHour + sign_unit * (hour + 1);
+        minute -= sign_unit * 60;
+    } else {
+        hour = startHour + sign_unit * hour;
+    }
+
+    hour = hour % 24;
+
+    return [minute, hour];
+}
+
 function addTimeLogic(hour, minute, startHour, startMinute){
-    var addMinute = minute + startMinute;
-    if (addMinute >= 60){
-        var addHour = startHour + hour + 1;
-        addMinute -= 60;
-    }else {
-        var addHour = startHour + hour;
-    }
-    if (addHour >= 24){
-        addHour -= 24;
-    }
-    
-    return [addMinute, addHour]
+    return modifyTimeLogic(hour, minute, startHour, startMinute, true);
 }
 
 function subtractTimeLogic(hour, minute, startHour, startMinute) {
-    var subtractMinute = startMinute - minute;
-    if (subtractMinute < 0){
-        var subtractHour = startHour - hour - 1;
-        subtractMinute += 60;
-    }else {
-        var subtractHour = startHour - hour;
-    }
-    if (subtractHour < 0){
-        subtractHour += 24;
-    }
-    
-    return [subtractMinute, subtractHour]
+    return modifyTimeLogic(hour, minute, startHour, startMinute, false);
 }
 
 /* Time Entry Row */
@@ -189,6 +192,11 @@ function createTimeEntry(divId){
     return outerDiv;
 }
 
+// function pad(num, size) {
+//     var s = "000000000" + num;
+//     return s.substr(s.length-size);
+// }
+
 function createStartInput(divId){
     var startInput = document.createElement("input");
     startInput.setAttribute('class', 'startInput');
@@ -196,23 +204,17 @@ function createStartInput(divId){
     startInput.type = "time";
     startInput.step = "300";
     startInput.name = "times["+divId +"][]";
-    
-    if ($(strid).length == 0){
+
+    // if first time
+    if ($(strid).length === 0){
         startInput.value = "08:00";
     }
     else {
         var inputs = 'input[name="times['+divId+'][]"]';
-        var lastTime = $(inputs).last().val();
-        var hour = parseInt(lastTime.split(":")[0], 10);
-        if (hour >= 23){
-            startInput.value = "0" + (hour + 1 - 24).toString() + ":00";
-        }
-        else if (hour < 9){
-            startInput.value = "0" + (hour + 1).toString() + ":00";
-        }
-        else {
-            startInput.value = (hour + 1).toString() + ":00";
-        }
+        // var lastTime = $(inputs).last().val();
+        // var hour = parseInt(lastTime.split(":")[0], 10);
+        // startInput.value = pad((hour + 1) % 24, 2) + ":00";
+        startInput.value = $(inputs).last().val(); // use last end time as start time
     }
     
     return startInput
