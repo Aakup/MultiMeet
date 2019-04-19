@@ -30,3 +30,13 @@ Feature: Login
         And I should see "Log Out"
         And I should not see "Log In"
         And I should not see "Sign Up"
+
+    Scenario: User is not logged in and tries to access a project's details
+        Given no current user
+        When I go to the URL "/projects/1/times"
+        Then I should see "You must be logged in to perform that action"
+        When I go to the URL "/projects/1/participants"
+        Then I should see "You must be logged in to perform that action"
+        When I go to the URL "/projects/1/matching"
+        Then I should see "You must be logged in to perform that action"
+

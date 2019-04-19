@@ -1,6 +1,7 @@
 <%= render 'layouts/navbar' %>
 
 <div id="billboard">
+  
     <% if flash[:message] %>
        <div class="alert alert-danger alert-dismissible show" role="alert">
         <div class="error"><strong>Error: </strong><%= flash[:message] %></div>
@@ -23,12 +24,23 @@
       <div class="jumbotron" id="timeslot">
         <div id="timeslot-div">
           <h3>Step 1: Choose Duration</h3>
-          <div>
-            <%= select_tag(:timeslot_hour, options_for_select((0..10))) %>
-            Hours
-            <%= select_tag(:timeslot_minute, options_for_select([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55])) %>
-            Minutes
-          </div>
+          <% if @duration.blank? %>
+            <div>
+              <%= select_tag(:timeslot_hour, options_for_select((0..8))) %>
+              Hours
+              <%= select_tag(:timeslot_minute, options_for_select([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55])) %>
+              Minutes
+            </div>
+          <% else %>
+            <p><b>Current Timeslot Length:</b> <%= @duration %> minutes</p>
+            <button name="change-duration" id="change-duration" type="button" data-toggle="collapse" data-target="#timeslot-toggle" class="btn btn-info btn-sm">Change Duration</button>
+            <div id="timeslot-toggle" class="collapse">
+              <%= select_tag(:timeslot_hour, options_for_select((0..8), :selected => @hour)) %>
+              Hours
+              <%= select_tag(:timeslot_minute, options_for_select([0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55], :selected => @minute)) %>
+              Minutes
+            </div>
+          <% end %>
         </div>
       </div>
       
@@ -56,7 +68,11 @@
       
       <div class="jumbotron" id="actions">
         <%= link_to 'Back', project_times_path, class:"btn btn-secondary" %>
-        <%= f.submit "Submit", class:"btn btn-primary"%>
+        <% if @duration.blank? %>
+          <%= f.submit "Submit", data: {confirm: "Are you sure?"}, class:"btn btn-primary"%>
+        <% else %>
+          <%= f.submit "Submit", data: {confirm: "Are you sure? Choosing 'OK' will.. \n- Change end times for previously selected start times."}, class:"btn btn-primary"%>
+        <% end %>
       </div>
       
     <% end %>

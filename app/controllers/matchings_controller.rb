@@ -3,6 +3,11 @@ class MatchingsController < ApplicationController
 
   # GET /project/:project_id/matching
   def show
+    if !logged_in?
+      require_user
+      return
+    end
+
     @proj_exists = !(@project.nil?)
     if @proj_exists
       @permission = current_user.id == @project.user.id
@@ -21,6 +26,7 @@ class MatchingsController < ApplicationController
   #   @matching = Matching.new
   # end
 
+  # TODO: convert to a PUT/ UPDATE
   # GET /projects/:project_id/matching/edit
   def edit
     respond_to do |format|

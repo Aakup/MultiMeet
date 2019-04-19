@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     # end
   end
 
-  # GET /times/1/edit
+  # GET /projects/1/edit
   def edit
 
   end
@@ -27,16 +27,24 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # returns true if ok, false if not
+  def valid_project_name?(project_name)
+    if project_name.nil? or project_name.empty?
+      flash[:message] = "Invalid project name"
+      return false
+    elsif !Project.where(
+        project_name: project_name, user_id: @project.user_id).blank?
+      flash[:message] = "Project name already exists"
+      return false
+    end
+    true
+  end
+
   def create
     @project = current_user.projects.new(project_params)
     project_name = @project.project_name
 
-    if project_name.nil? or project_name.empty?
-      flash[:message] = "Invalid project name"
-      redirect_to new_project_path and return
-    elsif !Project.where(
-        project_name: project_name, user_id: @project.user_id).blank?
-      flash[:message] = "Project name already exists"
+    unless valid_project_name? project_name
       redirect_to new_project_path and return
     end
 
@@ -48,9 +56,9 @@ class ProjectsController < ApplicationController
         flash[:success] = "Successfully created project #{project_name}"
         redirect_to projects_path
       end
-    else
-      flash[:message] = @user.errors.full_messages
-      redirect_to projects_path
+    # else
+    #   flash[:message] = @user.errors.full_messages
+    #   redirect_to projects_path
     end
   end
 

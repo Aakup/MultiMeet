@@ -5,6 +5,11 @@ class ParticipantsController < ApplicationController
   # GET /participants
   # GET /participants.json
   def index
+    if !logged_in?
+      require_user
+      return
+    end
+
     @participants = Participant.all
   end
 

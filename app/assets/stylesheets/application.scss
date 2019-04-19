@@ -110,3 +110,32 @@ ul li {
     padding: 1.5rem 2rem;
     margin: 1rem 0;
 }
+
+.current-duration{
+    margin-top: 20px;
+}
+
+.project-times-table{
+    margin: 20px 0 30px 0;
+}
+
+.project-times-table div{
+    width: 50%;
+}
+
+.project-times-dateentry{
+    margin-top: 20px;
+}
+
+.project-times-timeentry{
+    display: grid;
+    grid-template-columns: 50% 50%
+}
+
+#timeslot-toggle {
+    margin-top: 20px;
+}
+
+.datepicker-inline{
+    display: none !important;
+}

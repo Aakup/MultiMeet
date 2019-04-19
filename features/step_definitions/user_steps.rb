@@ -22,12 +22,28 @@ Given /^a registered user with the username "(.*)" has a project named "(.*)"$/ 
   user.projects.create(:project_name => project_name, :duration => 60)
 end
 
+Given("a project of id {string} with date {string} and time {string} and duration {string}") do |id, date, time, duration|
+    project = Project.find(id)
+    project.update(duration: duration)
+    ProjectTime.create(:project_id => id, :date_time => Date.parse(date), :is_date => true)
+    ProjectTime.create(:project_id => id, :date_time => Time.parse(time), :is_date => false)
+end
+
 When /^I access the landing page$/ do
     get "/"
 end
 
 When /^I access the matchings page for project of id "(.*)"$/ do |id|
     visit "/projects/" + id + "/matching"
+end
+
+When /^I access the times page for project of id "(.*)"$/ do |id|
+    visit "/projects/" + id + "/times"
+    
+end 
+
+When("I click the second show") do
+    page.all("a.btn btn-info")[1].click
 end
 
 Given /^a default matching exists for project with id "(.*)"$/ do |id|
