@@ -1,5 +1,7 @@
 <%= render 'layouts/navbar' %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_ranking_path(@ranking) %> |
-<%= link_to 'Back', rankings_path %>
+<h1>Rankings</h1>
+
+<%= link_to 'Edit', edit_project_participant_ranking_path(@participant.project_id, @participant.id, :secret_id => @participant.secret_id) %> |
+<%= link_to 'Back', project_participants_path %>

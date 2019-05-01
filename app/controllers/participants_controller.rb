@@ -56,6 +56,7 @@ class ParticipantsController < ApplicationController
   # GET /participants/1
   # GET /participants/1.json
   # def show
+  #   @participants = Participant.where(project_id: params[:project_id])
   #   redirect_to projects_path
   # end
 

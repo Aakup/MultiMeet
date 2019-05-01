@@ -1,4 +1,39 @@
 <%= render 'layouts/navbar' %>
-<h1>Editing Ranking</h1>
 
 <%= flash[:message] %>
+<br>
+<%= flash[:error] %>
+<h2>Please enter your preferences for these times.</h2>
+
+
+  <%= form_for(@ranking, :url => project_participant_ranking_path) do |f| %>
+    <table style="width:65%">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Can't Go</th>
+        <th>Okay</th>
+        <th>Preferred</th>
+      </tr>
+      </thead>
+
+      <tbody>
+            <% @times.each do |time| %>
+            <tr>
+                <td> <%=time.date_time.to_formatted_s(:long)%></td>
+                <td><%= radio_button_tag time.id, '3' %></td>
+                <td><%= radio_button_tag time.id, '2' %></td>
+                <td><%= radio_button_tag time.id, '1' %></td>
+            </tr>
+          <% end %>
+      </tbody>
+
+    </table>
+    <%= f.submit "Submit Preferences"%>
+
+<% end %>
+
+
+<!--<%#= link_to 'Show', @ranking %> |-->
+<%= link_to 'Back', project_participant_ranking_path %>
+

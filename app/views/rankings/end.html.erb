@@ -1,0 +1,7 @@
+<%= render 'layouts/navbar' %>
+
+<h1>Thanks for submitting your preferences!</h1>
+
+
+<!--<%#= link_to 'Show', @ranking %> |-->
+<%= link_to 'Go Back to Edit Your Preferences', edit_project_participant_ranking_path(@participant.project_id, @participant.id, :secret_id => @participant.secret_id) %>

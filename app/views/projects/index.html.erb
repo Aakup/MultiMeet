@@ -43,7 +43,25 @@
   width:100%;
   height:100%;
   top:0;
-  left: 0;}
+  hover:1;
+  left: 0;
+  transition: 0.5s;}
+  span:hover {background-color: #42bff4;
+    opacity: 0.5;
+  color: white;}
+</style>
+
+<style>
+  span1.proj1 { position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  hover:1;
+  left: 0;
+  transition: 0.5s;}
+  span1:hover {background-color: #cccccc;
+    opacity: 0.5;
+  color: white;}
 </style>
 
 
@@ -63,11 +81,14 @@
       <div class="row box-row">
         <% @projects.each do |project| %>
           <div class="card" style="width: 44%; background-color:#f2f2f2; margin:30px">
+            <div class="card-header">Project ID: <%= project.id %></div>
             <div class="card-body" id="bottom">
-              <a href= <%=project_path(project.id)%> <%= project.project_name %> style="text-decoration: none"><span class="proj"></span>
+              <a href= <%=project_path(project.id)%> <%= project.project_name %> style="text-decoration: none"><span1 class="proj1"></span1>
                 <h3 style="color: black"> <%= project.project_name%></h3>
               </a>
-              <h11> Project ID: <%= project.id %></h11>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
             </div>
           </div>
         <% end%>

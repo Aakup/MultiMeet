@@ -33,15 +33,26 @@
         </tr>
       </thead>
 
+<!--      <tbody>-->
+        <%# @participants.each do |participant| %>
+<!--          <tr>-->
+<!--            <td><%#= participant.email %></td>-->
+<!--            <td><%#= link_to 'DELETE', project_participant_path(participant.project_id, participant.id), method: :delete, url: project_participants_path, class:"btn btn-danger"%></td>-->
+<!--            <td> <%#= link_to 'Edit Ranking', project_participant_ranking_path(participant.project_id, participant.id), class:"btn btn-success" %> </td>-->
+<!--          </tr>-->
+        <%# end %>
+<!--      </tbody>-->
+
       <tbody>
-        <% @participants.each do |participant| %>
-          <tr>
-            <td><%= participant.email %></td>
-            <td><%= participant.last_responded ? participant.last_responded : 'No response yet'%></td>
-            <td><%= link_to 'Generate Rankings', edit_project_participant_path(participant.project_id, participant.id), class:"btn btn-primary"%></td>
-            <td><%= link_to 'DELETE', project_participant_path(participant.project_id, participant.id), method: :delete, url: project_participants_path, class:"btn btn-danger"%></td>
-          </tr>
-        <% end %>
+      <% @participants.each do |participant| %>
+        <tr>
+          <td><%= participant.email %></td>
+          <td><%= participant.last_responded ? participant.last_responded : 'No response yet'%></td>
+          <td><%= link_to 'Generate Rankings', edit_project_participant_path(participant.project_id, participant.id), class:"btn btn-primary"%></td>
+          <td><%= link_to 'DELETE', project_participant_path(participant.project_id, participant.id), method: :delete, url: project_participants_path, class:"btn btn-danger"%></td>
+          <td> <%= link_to 'Edit Ranking', project_participant_ranking_path(participant.project_id, participant.id), class:"btn btn-success" %> </td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
 

@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20190428045610) do
   create_table "participants", force: :cascade do |t|
     t.integer  "project_id",     null: false
     t.string   "email",          null: false
-    t.string  "secret_id"
     t.datetime "last_responded"
+    t.string   "secret_id"
   end
 
-  add_index "participants", ["project_id", "email"], name: "index_participants_on_project_id_and_email", unique: true
+  add_index "participants", ["project_id", "email", "last_responded"], name: "index_participants_on_project_id_and_email_and_last_responded", unique: true
 
   create_table "project_times", force: :cascade do |t|
     t.integer  "project_id",                 null: false

@@ -87,4 +87,16 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:project_name)
   end
+
+  def responded
+    @project = Project.find(params[:id])
+    count = 0
+    Participant.where(project_id: params[:id]).last_responded.each do |answer|
+      if answer == Null
+      else
+        !count += 1
+      end
+    end
+    return (Participant.where(project_id: params[:id]).last_responded / count)
+  end
 end
