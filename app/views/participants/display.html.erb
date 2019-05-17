@@ -48,8 +48,8 @@
     <div class="actions-participants">
       <div class="add-new-participant jumbotron white-bg shadow">
         <h5><b>Add Manually</b></h5>
+        <p><b>Match Degree:</b> How many time slot options given</p>
         <div class="manual-add-input">
-
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>
             <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
@@ -57,6 +57,7 @@
           <% end %>
         </div>
       </div>
+      
       <div class="import-participant jumbotron white-bg shadow">
         <h5><b>Import CSV</b></h5>
         <p><b>Format:</b> .csv file. One column w/ header "email"</p>
@@ -82,12 +83,12 @@
       <%= text_field_tag :email_subject, 'Choose available times for '.concat(@project.project_name) , class: 'form-control email-subject'%>
       <%= label_tag :email_body, 'Body', class: "font-weight-bold" %>
       <%= text_area_tag :email_body, '', placeholder: "Add message here. For each participant, a unique link to rank preferences will be appended to the body.", rows: 7, class: "form-control" %>
-      <%= submit_tag "Send email", class: "btn btn-secondary" %>
+      <%= submit_tag "Send Email", class: "btn btn-primary" %>
     <% end %>
   </div>
 
-  <div class="jumbotron white-bg shadow">
-    <%= link_to 'Back to Project', project_path(@project), class:"btn btn-info" %>
-  </div>
+</div>
 
+<div class="actions jumbotron white-bg shadow">
+  <%= link_to 'Back to Project', project_path(@project), class:"btn btn-info" %>
 </div>

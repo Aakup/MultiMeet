@@ -65,20 +65,20 @@
         <%= text_field_tag :email_subject, 'Final Matching Result For '.concat(@project.project_name) , class: 'form-control email-subject'%>
         <%= label_tag :email_body, 'Body', class: "font-weight-bold" %>
         <%= text_area_tag :email_body, 'Hi there, here is your assigned time for '.concat(@project.project_name), rows: 7, class: "form-control" %>
-        <%= submit_tag "Send email to participants", class: "btn btn-secondary" %>
+        <%= submit_tag "Send Email", class: "btn btn-primary" %>
       <% end %>
     </div>
   <% end %>
 
-  <div class="matching-actions jumbotron shadow white-bg">
-    <% if @proj_exists %>
-      <%= link_to 'Back to project', project_path(@project), class:"btn btn-primary" %>
-    <% end %>
-    <% if @matching %>
-      <%= button_to 'Run algorithm again', project_matching_path(@matching.project), class:"btn btn-primary" %>
-      <%= link_to 'Download CSV', project_matching_path(@project, format: "csv"), class: "btn btn-info" %>
-    <% end %>
-  </div>
+</div>
 
+<div class="actions matching-actions jumbotron shadow white-bg">
+  <% if @proj_exists %>
+    <%= link_to 'Back to project', project_path(@project), class:"btn btn-primary" %>
+  <% end %>
+  <% if @matching %>
+    <%= button_to 'Run algorithm again', project_matching_path(@matching.project), class:"btn btn-primary" %>
+    <%= link_to 'Download CSV', project_matching_path(@project, format: "csv"), class: "btn btn-info" %>
+  <% end %>
 </div>
 

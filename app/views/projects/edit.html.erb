@@ -4,20 +4,17 @@
 <%= render 'layouts/alerts' %>
 
 <div class="user-container">
-  <div class="jumbotron">
 
-    <h4>Renaming Project</h4>
+  <%= form_for(@project) do |f| %>
+    <div class="jumbotron shadow white-bg">
+      <h2>Renaming Project</h2>
+      <%= f.text_field :project_name, placeholder: "New Project Name", class: "form-control"%>
+    </div>
 
-    <%= form_for(@project) do |f| %>
-      <div class="form-group">
-        <%= f.text_field :project_name, placeholder: "New Project Name", class: "form-control"%>
-      </div>
+    <div class="actions jumbotron shadow white-bg">
+      <%= f.submit "Confirm Renaming", class:"btn btn-primary"  %>
+      <%= link_to 'Cancel', project_path(@project), class:"btn btn-secondary" %>
+    </div>
+  <% end %>
 
-      <div class="actions">
-        <%= f.submit "Confirm Renaming", class:"btn btn-primary"  %>
-        <%= link_to 'Cancel', project_path(@project), class:"btn btn-secondary" %>
-      </div>
-    <% end %>
-
-  </div>
 </div>

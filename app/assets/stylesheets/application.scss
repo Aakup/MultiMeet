@@ -39,6 +39,10 @@ ul {
 .user-container{
     margin: 10% auto;
     width: 50%;
+    
+    .actions{
+        width: 100%;
+    }
 }
 
 .actions {
@@ -46,6 +50,7 @@ ul {
     padding-bottom: 2rem;
     width: 70%;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .white-bg{
@@ -59,6 +64,16 @@ ul {
 #email_body{
     margin-bottom: 20px;
 }
+
+/*Login/Signup*/
+.sign-up {
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
 
 /* Times */
 .current-duration{
@@ -125,7 +140,7 @@ ul {
     display: grid;
     width: 70%;
     margin: 1rem auto;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 0;
     
     #timeslot {
         margin-bottom: 2rem;
@@ -224,6 +239,10 @@ ul {
     font-size: 30px;
 }
 
+#project_project_name{
+    margin-top: 20px;
+}
+
 /* Participants */
 .participants{
     width: 70%;
@@ -233,19 +252,23 @@ ul {
         width: 100%;
         display: grid;
         grid-template-columns: 50% 50%;
+        
+        #new_participant{
+            display:flex;
+        }
     
         .add-new-participant{
             width: 97.5%;
             justify-self:start;
             
             .manual-add-input{
-                margin-top: 20px;
-                display: flex;
+                margin-top: 10px;
                 
                 input {
                     margin-right: 10px;
                 }
             }
+            
         }
         
         .import-participant{
@@ -253,7 +276,6 @@ ul {
             justify-self:end;
             
             .upload-row{
-                display: flex;
                 
                 div {
                     margin-right: 10px;
