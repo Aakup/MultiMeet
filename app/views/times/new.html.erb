@@ -1,3 +1,6 @@
+<% content_for :for_head do %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
+<% end %>
 <% @title = "Select Times - MultiMeet" %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/alerts' %>
