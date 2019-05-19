@@ -57,7 +57,7 @@ $(document).on('click', '.addbutton', function(){
     var strid = "#"+parent_id;
     var entry = createTimeEntry(parent_id);
     element.append(entry);
-    $(strid).children().last().append('<span><button type="button" class="deletebutton btn btn-danger btn-sm">Delete Timeslot</button></span>');
+    $(strid).children().last().append('<span><button type="button" class="deletebutton btn btn-danger btn-sm">Delete</button></span>');
 });
 
 /* Delete Button functionality */
@@ -178,8 +178,8 @@ function createTimeEntry(divId){
     var outerDiv = document.createElement("div");
     var startTime = document.createElement("span");
     var endTime = document.createElement("span");
-    var startText = document.createTextNode("Start Time ");
-    var endText = document.createTextNode("End Time ");
+    var startText = document.createTextNode("Start ");
+    var endText = document.createTextNode("End ");
     startTime.appendChild(startText);
     endTime.appendChild(endText);
     startTime.append(startInput);

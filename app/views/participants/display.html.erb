@@ -30,10 +30,10 @@
       <tbody>
       <% @participants.each do |participant| %>
         <tr>
-          <td><%= participant.email %></td>
+          <td class="table-column-email"><%= participant.email %></td>
           <td class="d-none d-sm-table-cell"><%= participant.last_responded ? time_ago_in_words(participant.last_responded) + ' ago' : 'No response yet'%></td>
           <td class="d-none d-md-table-cell"><%= participant.match_degree %></td>
-          <td>
+          <td class="table-column-actions">
             <%= link_to 'Edit Participant', project_participant_path(participant.project_id, participant.id), url: project_participants_path, class:"btn btn-info btn-sm"%>
             <%= link_to 'Autofill Rankings', autofill_project_participant_path(participant.project_id, participant.id), class:"btn btn-primary btn-sm", id:"autofill_" + participant.id.to_s%>
             <%= link_to 'Show Rankings', project_participant_ranking_path(participant.project_id, participant.id), class:"btn btn-success btn-sm" %>
@@ -57,7 +57,7 @@
     <div class="actions-participants">
       <div class="add-new-participant jumbotron white-bg shadow">
         <h5><b>Add Manually</b></h5>
-        <p><b>Match Degree:</b> How many time slot options given</p>
+        <p><b>Match Degree:</b> # Timeslot Options</p>
         <div class="manual-add-input">
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>

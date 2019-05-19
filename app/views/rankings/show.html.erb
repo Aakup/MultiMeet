@@ -34,9 +34,10 @@
           </div>
         <% end %>
       <% end %>
-      <br>
-      <%= link_to 'Edit', edit_project_participant_ranking_path(
-          @participant.project_id, @participant.id, :secret_id => @participant.secret_id), class: "btn btn-primary" %>
-      <%= link_to 'Back', project_participants_path, class: "btn btn-primary" %>
     </div>
+  </div>
+  <div class="jumbotron shadow white-bg actions">
+    <%= link_to 'Edit', edit_project_participant_ranking_path(
+          @participant.project_id, @participant.id, :secret_id => @participant.secret_id), class: "btn btn-primary" %>
+    <%= link_to 'Back', project_participants_path, class: "btn btn-primary" %>
   </div>

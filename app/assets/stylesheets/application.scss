@@ -138,11 +138,12 @@ ul {
 
 #billboard{
     display: grid;
-    width: 70%;
     margin: 1rem auto;
     padding: 1.5rem 0;
     
     #timeslot {
+        width: 70%;
+        margin: 0 auto;
         margin-bottom: 2rem;
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -161,6 +162,8 @@ ul {
     }
     
     #dates {
+        width: 70%;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: 50% 50%;
         padding-top: 3rem;
@@ -173,12 +176,16 @@ ul {
     }
     
     #bottom-times {
+        width: 70%;
+        margin: 0 auto;
         padding-top: 3rem;
         padding-bottom: 3rem;
         margin-bottom: 2rem;
     }
     
     #actions {
+        width: 70%;
+        margin: 0 auto;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
@@ -252,9 +259,14 @@ ul {
   border-left: 1px solid #e6e6e6;
 }
 
-.card {
-  padding: 0px;
-  margin: 15px;
+.card{
+    margin: 15px;
+    padding: 0;
+}
+
+.display-participant{
+    margin: 0;
+    padding: 0;
 }
 
 span.proj { 
@@ -332,8 +344,6 @@ span1:hover {
     
 }
 
-
-
 /* Matchings */
 .matchings {
     width: 70%;
@@ -347,5 +357,162 @@ span1:hover {
     a, form {
         margin-left: 5px;
         margin-right: 5px;
+    }
+}
+
+/*Media Queries */
+@media screen and (max-width: 800px) {
+    /* Multiple Views */
+    .user-container{
+        width: 90%;
+    }
+    
+    .jumbotron {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn{
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+    
+    .actions{
+        display: flex;
+        width: 90%;
+        justify-content: left;
+        padding: 1.25rem .5rem;
+        
+        & *{
+            margin-left: .25rem;
+            margin-right: .25rem;
+        }
+    }
+    
+    h1{
+        font-size: 2rem;
+    }
+    
+    .form-control, .custom-file-label, .custom-file-label::after {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        height: calc(1.5em + 0.5rem);
+    }
+    
+    textarea.form-control{
+        height: auto;
+    }
+    
+    /* Sign Up */
+    .sign-up{
+        width: 90%;
+        transform: translateY(40%);
+    }
+    
+    /*Projects */
+    #billboard {
+        width: 90%;
+        padding: 1rem 0 !important;
+    }
+    
+    .times-index {
+        margin: 2rem auto;
+        padding: 1.5rem !important;
+        width: 90%;
+    }
+    
+    .list-group-item{
+        padding: 0.5rem 1.0rem;
+        
+        span{
+            font-size: 14px;
+        }
+    }
+    
+    /* Times */
+    #timeslot, #dates, #bottom-times, #actions {
+        width: 100% !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    
+    #dates{
+        grid-template-columns: 100% !important;
+    }
+    
+    .datepicker{
+        width: 80%;
+    }
+    
+    .times-table-date{
+        div {
+            display: flex;
+            
+            span {
+                font-size: 13px;
+                
+                button{
+                    margin: 0;
+                    padding: 0 0.5rem;
+                }
+            }
+        }
+    }
+    
+    /* Participants */
+    .participants{
+        width: 90%;
+    }
+    
+    .actions-participants{
+        grid-template-columns: 100% !important;
+        
+        div {
+            width: 100% !important;
+        }
+    }
+    
+    .listing-participants{
+        
+        .table-column-email{
+            font-size: 14px;
+        }
+        
+        .table-column-actions{
+            a {
+                margin-top: 5px;
+            }
+        }
+            
+    }
+    
+    /*Matchings */
+    .matchings{
+        width: 90%;
+        
+        .editing-matching{
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+        
+        .table{
+            font-size: 14px;
+            width: 100%;
+            
+            td{
+                padding: 0.5rem 0;
+            }
+        }
+    }
+    
+    .matching-actions, .times-index-actions, .edit-participants-action{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-row-gap: 10px;
     }
 }

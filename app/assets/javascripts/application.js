@@ -21,9 +21,6 @@
 /* global $ */
 
 /*Change label to be name of uploaded file */
-$(document).on('change', '.custom-file-input', function(){
-  var fileName = document.getElementById("csvInputFile").files[0].name;
-  $(this).next('.custom-file-label').addClass("selected").html(fileName);
-});
+
 
 

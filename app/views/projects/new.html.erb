@@ -3,9 +3,6 @@
 <%= render 'layouts/alerts' %>
 
 <div class="user-container">
-  <div class="jumbotron shadow white-bg">
-
-    <h4>Enter the name of your new project here</h4>
 
     <%= form_for(@project) do |f| %>
       <% if @project.errors.any? %>
@@ -19,16 +16,18 @@
           </ul>
         </div>
       <% else %>
+      <div class="jumbotron shadow white-bg">
+        <h4>Enter name of new project</h4>
         <div class="form-group">
           <%= f.text_field :project_name, placeholder: "Project Name", class: "form-control"%>
         </div>
+      </div>
       <% end %>
-    
-  </div>
-  <div class="actions jumbotron white-bg shadow">
-    <%= f.submit "Create Project", class:"btn btn-primary", style:"width=100%"  %>
-    <%= f.submit "Create Project and Choose Times", class: "btn btn-primary" %>
-    <%= link_to 'Back', projects_path, class:"btn btn-primary" %>
-  </div>
-  <% end %>
+      <div class="actions jumbotron white-bg shadow">
+        <%= f.submit "Create Project", class:"btn btn-primary", style:"width=100%"  %>
+        <%= f.submit "Choose Times", class: "btn btn-primary" %>
+        <%= link_to 'Back', projects_path, class:"btn btn-primary" %>
+      </div>
+    <% end %>
+  
 </div>

@@ -17,7 +17,7 @@ Feature: Roster
 
   Scenario: successfully create a new project
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with "Test Meeting 3"
     And I press "Create Project"
     Then I should be on the projects page
