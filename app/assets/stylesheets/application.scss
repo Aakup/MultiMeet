@@ -243,6 +243,48 @@ ul {
     margin-top: 20px;
 }
 
+.header {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 15px;
+}
+
+.main {
+  border-left: 1px solid #e6e6e6;
+}
+
+.card {
+  padding: 0px;
+  margin: 15px;
+}
+
+span.proj { 
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  transition: 0.5s;}
+  span:hover {background-color: #42bff4;
+  opacity: 0.5;
+  color: white;
+}
+
+span1.proj1 { 
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  hover:1;
+  left: 0;
+  transition: 0.5s;
+  color: white;
+}
+
+span1:hover {
+    background-color: #cccccc;
+    opacity: 0.5;
+}
+
 /* Participants */
 .participants{
     width: 70%;
