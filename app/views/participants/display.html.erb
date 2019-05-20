@@ -8,7 +8,7 @@
   <div class="listing-participants jumbotron white-bg shadow">
     <h1>Participants</h1>
     <h3><%= @project.project_name %></h3>
-    <table class="table">
+    <table class="table" style="table-layout: fixed; ">
       <thead>
         <tr>
           <th>Email</th>
@@ -21,7 +21,7 @@
       <tbody>
       <% @participants.each do |participant| %>
         <tr>
-          <td><%= participant.email %></td>
+          <td style="word-wrap: break-word;"><%= participant.email %></td>
           <td class="d-none d-sm-table-cell"><%= participant.last_responded ? time_ago_in_words(participant.last_responded) + ' ago' : 'No response yet'%></td>
           <td class="d-none d-md-table-cell"><%= participant.match_degree %></td>
           <td>
@@ -45,30 +45,34 @@
       </ul>
     </div>
   <% else %>
-    <div class="actions-participants">
-      <div class="add-new-participant jumbotron white-bg shadow">
+    <div class="row mx-0">
+      <div class="add-new-participant jumbotron white-bg shadow col-md-6">
         <h5><b>Add Manually</b></h5>
         <p><b>Match Degree:</b> How many time slot options given</p>
         <div class="manual-add-input">
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>
-            <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
-            <%= f.submit "Add Participant", class:"btn btn-primary btn-sm" %>
+            <div style="display: flex;">
+              <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
+              <%= f.submit "Add Participant", class:"btn btn-primary btn-sm" %>
+            </div>
           <% end %>
         </div>
       </div>
       
-      <div class="import-participant jumbotron white-bg shadow">
+      <div class="import-participant jumbotron white-bg shadow col-md-6">
         <h5><b>Import CSV</b></h5>
         <p><b>Format:</b> .csv file. One column w/ header "email"</p>
         <div class="upload-row">
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
-            <div class="custom-file" id="customFile">
-              <%= f.file_field :file, class: "custom-file-input", id: "csvInputFile", required: 'required' %>
-              <%= label_tag "csvInputFile", "Select File", class: "custom-file-label" %>
-            </div>
-            <div class="upload-button">
-              <%= f.submit "Upload CSV", name: 'import', class:"btn btn-primary" %>
+            <div style="display: flex;">
+              <div class="custom-file" id="customFile">
+                <%= f.file_field :file, class: "custom-file-input", id: "csvInputFile", required: 'required' %>
+                <%= label_tag "csvInputFile", "Select File", class: "custom-file-label" %>
+              </div>
+              <div class="upload-button">
+                <%= f.submit "Upload CSV", name: 'import', class:"btn btn-primary" %>
+              </div>
             </div>
           <% end %>
         </div>
