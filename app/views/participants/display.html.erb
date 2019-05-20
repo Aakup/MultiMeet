@@ -1,6 +1,6 @@
 <% content_for :for_head do %>
-  <script src="/assets/jquery.js" type="text/javascript"></script>
   <script>
+    /*Change label to be name of uploaded file */
     $(document).on('change', '.custom-file-input', function(){
       var fileName = document.getElementById("csvInputFile").files[0].name;
       $(this).next('.custom-file-label').addClass("selected").html(fileName);
@@ -62,7 +62,7 @@
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>
             <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
-            <%= f.submit "Add Participant", class:"btn btn-primary btn-sm add-participant-submit" %>
+            <%= f.submit "Add Participant", class:"btn btn-primary btn-sm" %>
           <% end %>
         </div>
       </div>

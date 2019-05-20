@@ -7,13 +7,9 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <link rel="icon" type="image/png" href="/logo.png">
-    
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %> 
     <% if content_for? :for_head %>
       <%= yield :for_head %>
-    <% else %>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <% end %>
   </head>
 

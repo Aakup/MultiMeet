@@ -16,11 +16,9 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require bootstrap-datepicker
-//= require_tree .
 /* global $ */
 
-/*Change label to be name of uploaded file */
+
 
 
 

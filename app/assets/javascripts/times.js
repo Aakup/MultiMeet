@@ -1,3 +1,4 @@
+//= require bootstrap-datepicker
 /* global $ */
 
 /* Datepicker*/

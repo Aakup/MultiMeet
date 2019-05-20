@@ -27,7 +27,7 @@
 								<div class="dropdown-menu">
 									<% @times.where(is_date: false).each do |time| %>
 										<a style="text-decoration: none">
-											<%= link_to time.date_time.strftime("%A, %B %d %I:%M %p"), modify_project_matching_path(@project, [[index], [time.date_time.strftime("%A, %B %d %Y %I:%M %p")]]), method: :modify%>
+											<%= link_to time.date_time.strftime("%A, %B %d %I:%M %p"), modify_project_matching_path(@project, [[index], [time.date_time.strftime("%A, %B %d %Y %I:%M %p")]]), method: :post%>
 										</a>
 									<% end %>
 								</div>
