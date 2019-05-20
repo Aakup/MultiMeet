@@ -4,13 +4,8 @@
   </ul>
   <ul class="navbar-nav" style="flex-direction: row">
     <% if logged_in? %>
-      <li class="nav-item dropdown mx-2">
-        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.username %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Projects', projects_path, class: "dropdown-item" %>
-        </div>
+      <li class="nav-item mx-3 my-2">
+        <%= current_user.username %>
       </li>
       <li class="nav-item pr-2"><%= link_to 'View Demo', 'https://youtu.be/W6eTtv9-XUY', class: "btn btn-outline-info" %></li>
       <li class="nav-item"><%= link_to 'Log Out', logout_path, method: :delete, class: "btn btn-outline-primary" %></li>

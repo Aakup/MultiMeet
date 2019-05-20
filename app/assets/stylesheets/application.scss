@@ -203,7 +203,7 @@ ul {
     }
     
     button {
-        margin: 0 15px;
+        margin: 0 0 0 15px;
     }
     
     div {
@@ -348,6 +348,10 @@ span1:hover {
 .matchings {
     width: 70%;
     margin: 2rem auto;
+    
+    .button_to{
+        margin-top: 20px;
+    }
 }
 
 .matching-actions{
@@ -358,6 +362,7 @@ span1:hover {
         margin-left: 5px;
         margin-right: 5px;
     }
+    
 }
 
 /*Media Queries */
@@ -450,6 +455,7 @@ span1:hover {
     }
     
     .times-table-date{
+        font-size: 14px;
         div {
             display: flex;
             
@@ -486,6 +492,7 @@ span1:hover {
         .table-column-actions{
             a {
                 margin-top: 5px;
+                font-size: 12px;
             }
         }
             
@@ -498,14 +505,26 @@ span1:hover {
         .editing-matching{
             padding-top: 2rem;
             padding-bottom: 1rem;
+            
+            .button_to{
+                margin-top: 10px;
+            }
         }
         
         .table{
-            font-size: 14px;
+            font-size: 12px !important;
             width: 100%;
+            
+            .btn-group{
+                .dropdown-toggle{
+                    line-height: 1;
+                    font-size: 12px;
+                }
+            }
             
             td{
                 padding: 0.5rem 0;
+                word-wrap: break-word
             }
         }
     }
