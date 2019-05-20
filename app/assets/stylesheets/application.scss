@@ -308,7 +308,24 @@ span1:hover {
         grid-template-columns: 50% 50%;
         
         #new_participant{
-            display:flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            
+            #participant_email{
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+            
+            #participant_match_degree{
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        }
+        
+        .import-csv-form{
+            display: flex !important;
         }
     
         .add-new-participant{

@@ -62,7 +62,7 @@
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>
             <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
-            <%= f.submit "Add Participant", class:"btn btn-primary btn-sm" %>
+            <%= f.submit "Add Participant", class:"btn btn-primary btn-sm add-participant-submit" %>
           <% end %>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <h5><b>Import CSV</b></h5>
         <p><b>Format:</b> .csv file. One column w/ header "email"</p>
         <div class="upload-row">
-          <%= form_for(@participant, :url => project_participants_path) do |f| %>
+          <%= form_for(@participant, :url => project_participants_path, html: {class: "import-csv-form"}) do |f| %>
             <div class="custom-file" id="customFile">
               <%= f.file_field :file, class: "custom-file-input", id: "csvInputFile", required: 'required' %>
               <%= label_tag "csvInputFile", "Select File", class: "custom-file-label" %>
