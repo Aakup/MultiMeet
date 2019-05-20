@@ -4,7 +4,7 @@
 /* Datepicker*/
 $(document).on('turbolinks:load', 
     function() {
-        $('.datepicker').datepicker({startDate: new Date(), clearBtn: true, todayHighlight: true, multidate: true, format: 'yyyy-mm-dd', constrainInput: false});
+        $('.datepicker').datepicker({startDate: new Date(), clearBtn: true, orientation: 'auto top', todayHighlight: true, multidate: true, format: 'yyyy-mm-dd', constrainInput: false});
     }
 );
 
