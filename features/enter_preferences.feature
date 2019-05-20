@@ -27,7 +27,7 @@ Background: A project is set up and participants are invited to rank times
 
   Scenario: User enters their preferences for times
     When I access the time ranking page for project "CS169 Sections" from email "empoleon@berkeley.edu" and secret_id "empoleonsecretid"
-    Then I should see "Please enter your preferences for these times."
+    Then I should see "Enter your preferences for these times."
     And I should not see "Access denied"
     When I choose "Can't go" for time "Dec 1 2019 10:00 AM"
     And I choose "1" for time "Dec 1 2019 1:00 PM"
@@ -63,7 +63,7 @@ Background: A project is set up and participants are invited to rank times
     And the match degree of "empoleon@berkeley.edu" should be 2
 
     When I access the time ranking page for project "CS169 Sections" from email "empoleon@berkeley.edu" and secret_id "empoleonsecretid"
-    Then I should see "Please enter your preferences for these times."
+    Then I should see "Enter your preferences for these times."
     When I choose "1" for time "Dec 1 2019 1:00 PM"
     When I choose "Can't go" for time "Dec 1 2019 10:00 AM"
     And I press "Submit"

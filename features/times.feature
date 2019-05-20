@@ -61,7 +61,7 @@ Feature: Choose times
     Then I should see "Party 1"
     And I should see "Times"
     When I follow "Times"
-    Then I should see "Project Times"
+    Then I should see "Party 1 Times"
     When I follow "Add new time"
     Then I should see "Step 1: Choose Duration"
 
