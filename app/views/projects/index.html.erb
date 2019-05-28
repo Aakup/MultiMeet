@@ -1,58 +1,6 @@
+<% @title = "Project Dashboard - MultiMeet" %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/alerts' %>
-
-<head>
-<% @title = "Project Dashboard - MultiMeet" %>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.header {
-  border-bottom: 1px solid #e6e6e6;
-  padding: 15px;
-}
-
-.menu {
-}
-
-.main {
-  border-left: 1px solid #e6e6e6;
-}
-
-.card {
-  padding: 0px;
-  margin: 15px;
-}
-
-</style>
-</head>
-
-<style>
-  span.proj { position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  left: 0;
-  transition: 0.5s;}
-  span:hover {background-color: #42bff4;
-  opacity: 0.5;
-color: white;}
-</style>
-
-<style>
-  span1.proj1 { position:absolute;
-  width:100%;
-  height:100%;
-  top:0;
-  hover:1;
-  left: 0;
-  transition: 0.5s;}
-  span1:hover {background-color: #cccccc;
-    opacity: 0.5;
-  color: white;}
-</style>
 
 <div class="container-fluid">
 <% if logged_in? %>

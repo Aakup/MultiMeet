@@ -8,7 +8,6 @@
   <div class="editing-matching jumbotron shadow white-bg">
     <h1>Matching</h1>
     <h3><%= @project ? @project.project_name : "" %></h3>
-    <p id="notice"><%= notice %></p>
 
     <% if @matching %>
       <table class="table">
@@ -23,12 +22,12 @@
 						<td>
 							<div class="btn-group">
 								<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									<%= Time.parse(event["timestamp"]).strftime("%A, %B %d %Y %I:%M %p") %>
+									<%= Time.parse(event["timestamp"]).strftime("%A, %B %d %I:%M %p") %>
 								</button>
 								<div class="dropdown-menu">
 									<% @times.where(is_date: false).each do |time| %>
 										<a style="text-decoration: none">
-											<%= link_to time.date_time.strftime("%A, %B %d %Y %I:%M %p"), modify_project_matching_path(@project, [[index], [time.date_time.strftime("%A, %B %d %Y %I:%M %p")]]), method: :modify%>
+											<%= link_to time.date_time.strftime("%A, %B %d %I:%M %p"), modify_project_matching_path(@project, [[index], [time.date_time.strftime("%A, %B %d %Y %I:%M %p")]]), method: :post%>
 										</a>
 									<% end %>
 								</div>
@@ -65,20 +64,20 @@
         <%= text_field_tag :email_subject, 'Final Matching Result For '.concat(@project.project_name) , class: 'form-control email-subject'%>
         <%= label_tag :email_body, 'Body', class: "font-weight-bold" %>
         <%= text_area_tag :email_body, 'Hi there, here is your assigned time for '.concat(@project.project_name), rows: 7, class: "form-control" %>
-        <%= submit_tag "Send email to participants", class: "btn btn-secondary" %>
+        <%= submit_tag "Send Email", class: "btn btn-primary" %>
       <% end %>
     </div>
   <% end %>
 
-  <div class="matching-actions jumbotron shadow white-bg">
-    <% if @proj_exists %>
-      <%= link_to 'Back to project', project_path(@project), class:"btn btn-primary" %>
-    <% end %>
-    <% if @matching %>
-      <%= button_to 'Run algorithm again', project_matching_path(@matching.project), class:"btn btn-primary" %>
-      <%= link_to 'Download CSV', project_matching_path(@project, format: "csv"), class: "btn btn-info" %>
-    <% end %>
-  </div>
+</div>
 
+<div class="actions matching-actions jumbotron shadow white-bg">
+  <% if @proj_exists %>
+    <%= link_to 'Back to project', project_path(@project), class:"btn btn-primary" %>
+  <% end %>
+  <% if @matching %>
+    <%= button_to 'Run algorithm again', project_matching_path(@matching.project), class:"btn btn-primary" %>
+    <%= link_to 'Download CSV', project_matching_path(@project, format: "csv"), class: "btn btn-info" %>
+  <% end %>
 </div>
 

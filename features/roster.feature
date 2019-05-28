@@ -17,7 +17,7 @@ Feature: Roster
 
   Scenario: successfully create a new project
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with "Test Meeting 3"
     And I press "Create Project"
     Then I should be on the projects page
@@ -70,7 +70,7 @@ Feature: Roster
     When I fill in "Email" with "daniellee0228@berkeley.edu"
     And I press "Add Participant"
     And I fill in "email_body" with "Hello, please give me your availability"
-    And I press "Send email"
+    And I press "Send Email"
     Then the participant should receive an email
     Then I should see "Emails have been sent."
 
@@ -79,7 +79,7 @@ Feature: Roster
     When I fill in "Email" with "daniellee0228@berkeley.edu"
     And I press "Add Participant"
     And I fill in "email_body" with "Hello, please give me your availability"
-    And I press "Send email"
+    And I press "Send Email"
     Then the participant should receive an email
     Then I should see "Emails have been sent."
     When I visit the link from the email for project of id "1" and participant of id "1"
@@ -90,7 +90,7 @@ Feature: Roster
     When I fill in "Email" with "daniellee0228@berkeley.edu"
     And I press "Add Participant"
     And I fill in "email_body" with "Hello, please give me your availability"
-    And I press "Send email"
+    And I press "Send Email"
     Then the participant should receive an email
     Then I should see "Emails have been sent."
     When I visit the bad link from the email for project of id "1" and participant of id "1"

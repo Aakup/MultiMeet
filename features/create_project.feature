@@ -17,13 +17,13 @@ Feature: create a project
 
   Scenario: go to new project page and back
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I follow "Back"
     Then I should be on the projects page
 
   Scenario: successfully create a new project
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with "Test Meeting 3"
     And I press "Create Project"
     Then I should be on the projects page
@@ -31,18 +31,18 @@ Feature: create a project
 
   Scenario: give project duplicate project name
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with "Test Meeting 2"
     And I press "Create Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     And I should see "Project name already exists"
 
   Scenario: give project invalid name
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with ""
     And I press "Create Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     And I should see "Invalid project name"
 
   Scenario: rename project to same name

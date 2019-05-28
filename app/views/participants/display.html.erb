@@ -1,9 +1,18 @@
+<% content_for :for_head do %>
+  <script>
+    /*Change label to be name of uploaded file */
+    $(document).on('change', '.custom-file-input', function(){
+      var fileName = document.getElementById("csvInputFile").files[0].name;
+      $(this).next('.custom-file-label').addClass("selected").html(fileName);
+    });
+  </script> 
+<% end %>
+
 <% @title = @project.project_name + " Participants - MultiMeet" %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/alerts' %>
 
 <div class="participants">
-  <p id="notice"><%= notice %></p>
 
   <div class="listing-participants jumbotron white-bg shadow">
     <h1>Participants</h1>
@@ -21,10 +30,10 @@
       <tbody>
       <% @participants.each do |participant| %>
         <tr>
-          <td><%= participant.email %></td>
+          <td class="table-column-email"><%= participant.email %></td>
           <td class="d-none d-sm-table-cell"><%= participant.last_responded ? time_ago_in_words(participant.last_responded) + ' ago' : 'No response yet'%></td>
           <td class="d-none d-md-table-cell"><%= participant.match_degree %></td>
-          <td>
+          <td class="table-column-actions">
             <%= link_to 'Edit Participant', project_participant_path(participant.project_id, participant.id), url: project_participants_path, class:"btn btn-info btn-sm"%>
             <%= link_to 'Autofill Rankings', autofill_project_participant_path(participant.project_id, participant.id), class:"btn btn-primary btn-sm", id:"autofill_" + participant.id.to_s%>
             <%= link_to 'Show Rankings', project_participant_ranking_path(participant.project_id, participant.id), class:"btn btn-success btn-sm" %>
@@ -48,8 +57,8 @@
     <div class="actions-participants">
       <div class="add-new-participant jumbotron white-bg shadow">
         <h5><b>Add Manually</b></h5>
+        <p><b>Match Degree:</b> # Timeslot Options</p>
         <div class="manual-add-input">
-
           <%= form_for(@participant, :url => project_participants_path) do |f| %>
             <%= f.text_field :email, type: "email", placeholder: "Email", class: "form-control", :required => 'required'%>
             <%= f.number_field :match_degree, type: "number", min:"1", placeholder: "Match Degree", class: "form-control", :required => 'required'%>
@@ -57,11 +66,12 @@
           <% end %>
         </div>
       </div>
+      
       <div class="import-participant jumbotron white-bg shadow">
         <h5><b>Import CSV</b></h5>
         <p><b>Format:</b> .csv file. One column w/ header "email"</p>
         <div class="upload-row">
-          <%= form_for(@participant, :url => project_participants_path) do |f| %>
+          <%= form_for(@participant, :url => project_participants_path, html: {class: "import-csv-form"}) do |f| %>
             <div class="custom-file" id="customFile">
               <%= f.file_field :file, class: "custom-file-input", id: "csvInputFile", required: 'required' %>
               <%= label_tag "csvInputFile", "Select File", class: "custom-file-label" %>
@@ -82,12 +92,12 @@
       <%= text_field_tag :email_subject, 'Choose available times for '.concat(@project.project_name) , class: 'form-control email-subject'%>
       <%= label_tag :email_body, 'Body', class: "font-weight-bold" %>
       <%= text_area_tag :email_body, '', placeholder: "Add message here. For each participant, a unique link to rank preferences will be appended to the body.", rows: 7, class: "form-control" %>
-      <%= submit_tag "Send email", class: "btn btn-secondary" %>
+      <%= submit_tag "Send Email", class: "btn btn-primary" %>
     <% end %>
   </div>
 
-  <div class="jumbotron white-bg shadow">
-    <%= link_to 'Back to Project', project_path(@project), class:"btn btn-info" %>
-  </div>
+</div>
 
+<div class="actions jumbotron white-bg shadow">
+  <%= link_to 'Back to Project', project_path(@project), class:"btn btn-info" %>
 </div>

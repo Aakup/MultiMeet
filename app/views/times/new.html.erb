@@ -1,9 +1,11 @@
+<% content_for :for_head do %>
+  <%= javascript_include_tag 'times', 'data-turbolinks-track' => true %> 
+<% end %>
+<% @title = "Select Times - MultiMeet" %>
 <%= render 'layouts/navbar' %>
 <%= render 'layouts/alerts' %>
-<% @title = "Select Times - MultiMeet" %>
 
 <div id="billboard">
-    
     
     <%= form_for(@time) do |f| %>
       <div class="jumbotron shadow white-bg" id="timeslot">
@@ -59,5 +61,3 @@
       
     <% end %>
 </div>
-
-

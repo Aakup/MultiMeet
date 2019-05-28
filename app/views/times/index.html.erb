@@ -2,8 +2,7 @@
 <%= render 'layouts/alerts' %>
 <% @title = @project.project_name + " Times - MultiMeet" %>
 <div class="jumbotron times-index shadow white-bg">
-  <h1>Project Times</h1>
-  <h3><%= @project ? @project.project_name : "" %></h3>
+  <h1><%= @project ? @project.project_name : "" %> Times</h1>
   
   <div class="current-duration">
     <% if !@duration.blank? %>
@@ -37,7 +36,7 @@
   </div>
 </div>
 
-<div class="jumbotron actions shadow white-bg">
+<div class="times-index-actions jumbotron actions shadow white-bg">
   <%= link_to 'Back to project', project_path(@project_id), class:"btn btn-secondary"%>
   <% if !@times.empty? %>
     <%= link_to 'Reselect Times', destroy_project_times_path, method: :delete, data: {confirm: "Are you sure? Choosing 'OK' will.. \n- Delete all saved times for the project. \n- Reset duration."}, class:"btn btn-danger" %>

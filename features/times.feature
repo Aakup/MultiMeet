@@ -16,7 +16,7 @@ Feature: Choose times
   Scenario: User submits with 0 minutes for duration
     When I follow "New Project"
     When I fill in "Project Name" with "Lan party"
-    And I press "Create Project and Choose Times"
+    And I press "Choose Times"
     When I send a POST request to "/projects/2/times" with:
       """
       {
@@ -33,9 +33,9 @@ Feature: Choose times
 
   Scenario: Choose times from project creation page
     When I follow "New Project"
-    Then I should see "Enter the name of your new project here"
+    Then I should see "Enter name of new project"
     When I fill in "Project Name" with "Party 2"
-    And I press "Create Project and Choose Times"
+    And I press "Choose Times"
     Then I should see "Successfully created project Party 2. Choose dates and times now!"
     When I send a POST request to "/projects/2/times" with:
       """
@@ -61,7 +61,7 @@ Feature: Choose times
     Then I should see "Party 1"
     And I should see "Times"
     When I follow "Times"
-    Then I should see "Project Times"
+    Then I should see "Party 1 Times"
     When I follow "Add new time"
     Then I should see "Step 1: Choose Duration"
 

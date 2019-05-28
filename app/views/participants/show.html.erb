@@ -32,10 +32,9 @@
                                                      placeholder: "Match Degree", class: "form-control",
                                                      required: "required" %>
       </div>
-
-      <div class="actions">
+      <div class="actions edit-participants-action">
         <%= f.submit "Update Participant", class:"btn btn-success"  %>
-        <%= link_to 'Cancel', project_participants_path, class:"btn btn-primary" %>
+        <%= link_to 'Back', project_participants_path, class:"btn btn-primary" %>
         <%= link_to 'Delete Participant', project_participant_path(@participant.project_id, @participant.id), method: :delete, url: project_participants_path, class:"btn btn-danger"%></td>
       </div>
     <% end %>

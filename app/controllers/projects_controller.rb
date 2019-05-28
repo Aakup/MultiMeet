@@ -63,7 +63,7 @@ class ProjectsController < ApplicationController
   end
 
   def redirect_based_on_create_type(project_name)
-    if params[:commit] == 'Create Project and Choose Times'
+    if params[:commit] == 'Choose Times'
       flash[:success] = "Successfully created project #{project_name}. Choose dates and times now!"
       redirect_to new_project_time_path(@project)
     else

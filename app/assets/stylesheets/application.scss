@@ -39,6 +39,10 @@ ul {
 .user-container{
     margin: 10% auto;
     width: 50%;
+    
+    .actions{
+        width: 100%;
+    }
 }
 
 .actions {
@@ -46,6 +50,7 @@ ul {
     padding-bottom: 2rem;
     width: 70%;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .white-bg{
@@ -59,6 +64,16 @@ ul {
 #email_body{
     margin-bottom: 20px;
 }
+
+/*Login/Signup*/
+.sign-up {
+    width: 70%;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}
+
 
 /* Times */
 .current-duration{
@@ -123,11 +138,12 @@ ul {
 
 #billboard{
     display: grid;
-    width: 70%;
     margin: 1rem auto;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 0;
     
     #timeslot {
+        width: 70%;
+        margin: 0 auto;
         margin-bottom: 2rem;
         padding-top: 3rem;
         padding-bottom: 3rem;
@@ -146,6 +162,8 @@ ul {
     }
     
     #dates {
+        width: 70%;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: 50% 50%;
         padding-top: 3rem;
@@ -158,12 +176,16 @@ ul {
     }
     
     #bottom-times {
+        width: 70%;
+        margin: 0 auto;
         padding-top: 3rem;
         padding-bottom: 3rem;
         margin-bottom: 2rem;
     }
     
     #actions {
+        width: 70%;
+        margin: 0 auto;
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
@@ -181,7 +203,7 @@ ul {
     }
     
     button {
-        margin: 0 15px;
+        margin: 0 0 0 15px;
     }
     
     div {
@@ -224,6 +246,60 @@ ul {
     font-size: 30px;
 }
 
+#project_project_name{
+    margin-top: 20px;
+}
+
+.header {
+  border-bottom: 1px solid #e6e6e6;
+  padding: 15px;
+}
+
+.main {
+  border-left: 1px solid #e6e6e6;
+}
+
+.card{
+    margin: 15px;
+    padding: 0;
+}
+
+.display-participant{
+    margin: 0;
+    padding: 0;
+}
+
+.proj { 
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
+  transition: 0.5s;
+}
+  
+.proj:hover {
+  background-color: #42bff4;
+  opacity: 0.5;
+  color: white;
+}
+
+.proj1 { 
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  hover:1;
+  left: 0;
+  transition: 0.5s;
+  color: white;
+}
+
+.proj1:hover {
+    background-color: #cccccc;
+    opacity: 0.5;
+}
+
 /* Participants */
 .participants{
     width: 70%;
@@ -233,19 +309,40 @@ ul {
         width: 100%;
         display: grid;
         grid-template-columns: 50% 50%;
+        
+        #new_participant{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+            
+            #participant_email{
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+            
+            #participant_match_degree{
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        }
+        
+        .import-csv-form{
+            display: flex !important;
+        }
     
         .add-new-participant{
             width: 97.5%;
             justify-self:start;
             
             .manual-add-input{
-                margin-top: 20px;
-                display: flex;
+                margin-top: 10px;
                 
                 input {
                     margin-right: 10px;
                 }
             }
+            
         }
         
         .import-participant{
@@ -253,7 +350,6 @@ ul {
             justify-self:end;
             
             .upload-row{
-                display: flex;
                 
                 div {
                     margin-right: 10px;
@@ -268,12 +364,15 @@ ul {
     
 }
 
-
-
 /* Matchings */
 .matchings {
     width: 70%;
     margin: 2rem auto;
+    
+    .button_to{
+        margin-top: 20px;
+    }
+    
 }
 
 .matching-actions{
@@ -283,5 +382,187 @@ ul {
     a, form {
         margin-left: 5px;
         margin-right: 5px;
+    }
+    
+}
+
+/*Media Queries */
+@media screen and (max-width: 800px) {
+    /* Multiple Views */
+    .user-container{
+        width: 90%;
+    }
+    
+    .jumbotron {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn{
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+    
+    .actions{
+        display: flex;
+        width: 90%;
+        justify-content: left;
+        padding: 1.25rem .5rem;
+        
+        & *{
+            margin-left: .25rem;
+            margin-right: .25rem;
+        }
+    }
+    
+    h1{
+        font-size: 2rem;
+    }
+    
+    .form-control, .custom-file-label, .custom-file-label::after {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+        height: calc(1.5em + 0.5rem);
+    }
+    
+    textarea.form-control{
+        height: auto;
+    }
+    
+    /* Sign Up */
+    .sign-up{
+        width: 90%;
+        transform: translateY(40%);
+    }
+    
+    /*Projects */
+    #billboard {
+        width: 90%;
+        padding: 1rem 0 !important;
+    }
+    
+    .times-index {
+        margin: 2rem auto;
+        padding: 1.5rem !important;
+        width: 90%;
+    }
+    
+    .list-group-item{
+        padding: 0.5rem 1.0rem;
+        
+        span{
+            font-size: 14px;
+        }
+    }
+    
+    /* Times */
+    #timeslot, #dates, #bottom-times, #actions {
+        width: 100% !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    
+    #dates{
+        grid-template-columns: 100% !important;
+    }
+    
+    .datepicker{
+        width: 80%;
+    }
+    
+    .times-table-date{
+        font-size: 14px;
+        div {
+            display: flex;
+            
+            span {
+                font-size: 13px;
+                
+                button{
+                    margin: 0;
+                    padding: 0 0.5rem;
+                }
+            }
+        }
+    }
+    
+    /* Participants */
+    .participants{
+        width: 90%;
+    }
+    
+    .actions-participants{
+        grid-template-columns: 100% !important;
+        
+        div {
+            width: 100% !important;
+        }
+    }
+    
+    .listing-participants{
+        
+        .table-column-email{
+            font-size: 14px;
+        }
+        
+        .table-column-actions{
+            a {
+                margin-top: 5px;
+                font-size: 12px;
+            }
+        }
+            
+    }
+    
+    /*Matchings */
+    .matchings{
+        width: 90%;
+        
+        .editing-matching{
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+            
+            .button_to{
+                margin-top: 10px;
+            }
+        }
+        
+        .table{
+            font-size: 12px !important;
+            width: 100%;
+            
+            .btn-group{
+                .dropdown-toggle{
+                    line-height: 1;
+                    font-size: 12px;
+                }
+                .dropdown-menu{
+                    a {
+                        font-size: 12px;
+                    }
+                }
+            }
+            
+            td{
+                padding: 0.5rem 0;
+                word-wrap: break-word
+            }
+        }
+    }
+    
+    .matching-actions, .times-index-actions, .edit-participants-action{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-row-gap: 10px;
+    }
+    
+    .edit-participants-action{
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 }
